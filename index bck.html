@@ -15,71 +15,31 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <script>
-        // Token desain — meniru gaya referensi: dark fintech wallet app,
-        // kartu hero gradient biru->hijau, badge pill, list card gelap.
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        ink: { DEFAULT: '#0B0B0F', 50: '#EFF3F1' },
-                        paper: { DEFAULT: '#F4F5F7', dark: '#0B0B0F' },
-                        night: { card: '#17171C', card2: '#1E1E24', border: '#26262E' },
-                        emerald: { 50: '#E8F6F1', 100: '#D7F0E6', 500: '#14B893', 600: '#0F9C7C', 700: '#0C7C63', 900: '#0A3B2C' },
-                        marigold: { 100: '#FBF1DC', 300: '#EBC670', 500: '#F5A623', 700: '#B9781A' },
-                        brick: { 100: '#FCE7E2', 500: '#F2725A', 600: '#DD5B44' },
-                        slateink: { 400: '#9AA3AE', 500: '#7B8590', 700: '#4B5563' }
-                    },
-                    fontFamily: {
-                        display: ['"Baloo 2"', 'sans-serif'],
-                        body: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        mono: ['"Plus Jakarta Sans"', 'sans-serif']
-                    }
-                }
-            }
-        };
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s ease, color 0.3s ease; }
-        html.dark body, body.dark { background-color: #0B0B0F; color: #F4F5F7; }
-        html.dark * { color: #F4F5F7; }
-        html.dark input, html.dark textarea, html.dark select { background-color: #17171C !important; color: #F4F5F7 !important; border-color: #26262E !important; }
-        html.dark .glass-card { background: #17171C !important; border-color: #26262E !important; }
-        .dark { background-color: #0B0B0F; color: #F4F5F7; }
-        .glass-card { background: #FFFFFF; border: 1px solid rgba(11,11,15,0.06); }
-        .dark .glass-card { background: #17171C; border: 1px solid #26262E; }
-        .nav-item.active { color: #0B0B0F; }
-        html.dark .nav-item.active { color: #F4F5F7; }
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s ease, color 0.3s ease; }
+        html.dark body, body.dark { background-color: #0f172a; color: #f8fafc; }
+        html.dark * { color: #f8fafc; }
+        html.dark input, html.dark textarea, html.dark select { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
+        html.dark .glass-card { background: rgba(15, 23, 42, 0.9) !important; }
+        .dark { background-color: #0f172a; color: #f8fafc; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .dark .glass-card { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .nav-item.active { color: #3b82f6; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .btn-bounce:active { transform: scale(0.95); transition: transform 0.1s; }
-        .font-tabular { font-variant-numeric: tabular-nums; }
-
-        /* Warna aksen dinamis — dikontrol oleh input "Warna Tema App" di Setup.
-           Panel/tombol bermerek (kartu saldo, FAB, tombol simpan) memakai
-           variabel ini; teks tetap warna tetap (putih/abu) supaya selalu jelas. */
-        :root { --accent: #1D4E75; }
-        .accent-gradient { background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 100%, #000000 30%) 100%); }
-        .accent-solid { background: var(--accent) !important; }
-        .accent-text { color: var(--accent) !important; }
-        .accent-border { border-color: var(--accent) !important; }
-
+        
         @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .animate-slide-up { animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        /* Stempel status kecil (LUNAS/SISA) gaya badge pill */
-        .stamp { border-radius: 9999px; display: inline-flex; align-items: center; gap: 4px; letter-spacing: 0.02em; }
-
         /* PIN Lock Screen Styles */
-        .pin-key { width: 100%; padding: 1rem 0; border-radius: 9999px; font-size: 1.25rem; font-weight: 700; background: #17171C; border: 1px solid #26262E; color: #F4F5F7; transition: transform .1s; display: flex; align-items: center; justify-content: center; }
+        .pin-key { width: 100%; padding: 1rem 0; border-radius: 9999px; font-size: 1.25rem; font-weight: 700; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.05); color: #1e293b; transition: transform .1s; display: flex; align-items: center; justify-content: center; }
         .pin-key:active { transform: scale(0.92); }
-        html.dark .pin-key { background: #17171C; color: #F4F5F7; border-color: #26262E; }
+        html.dark .pin-key { background: rgba(30,41,59,0.7); color: #f8fafc; border-color: rgba(255,255,255,0.05); }
         .pin-dot { display: inline-block; }
-        .pin-dot.filled { background-color: var(--accent); border-color: var(--accent); }
+        .pin-dot.filled { background-color: #2563eb; border-color: #2563eb; }
         @keyframes shake { 10%,90% { transform: translateX(-2px); } 20%,80% { transform: translateX(4px); } 30%,50%,70% { transform: translateX(-6px); } 40%,60% { transform: translateX(6px); } }
         .animate-shake { animation: shake 0.4s; }
 
@@ -95,31 +55,31 @@
         }
     </style>
 </head>
-<body class="bg-paper dark:bg-paper-dark min-h-screen pb-24 overflow-x-hidden font-body">
+<body class="bg-gray-50 min-h-screen pb-24 overflow-x-hidden">
 
     <div id="global-loader" class="fixed top-4 right-4 z-[100] flex items-center justify-center hidden">
-        <div class="bg-emerald-600 rounded-full p-2 shadow-lg shadow-emerald-900/20">
+        <div class="bg-blue-600 rounded-full p-2 shadow-lg shadow-blue-400">
             <i data-lucide="loader-2" class="w-4 h-4 animate-spin text-white"></i>
         </div>
     </div>
 
     <!-- PIN LOCK SCREEN -->
-    <div id="lock-screen" class="fixed inset-0 bg-paper dark:bg-paper-dark z-[90] flex flex-col items-center justify-center p-6 hidden">
+    <div id="lock-screen" class="fixed inset-0 bg-gray-50 dark:bg-slate-950 z-[90] flex flex-col items-center justify-center p-6 hidden">
         <div class="w-full max-w-xs text-center">
-            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl accent-gradient flex items-center justify-center shadow-lg shadow-black/20 border border-white/10">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200 dark:shadow-none">
                 <i data-lucide="lock" class="w-8 h-8 text-white"></i>
             </div>
-            <h2 class="text-lg font-display font-bold text-ink dark:text-white mb-1" id="pin-title">Masukkan PIN</h2>
-            <p class="text-xs text-slateink-500 dark:text-slateink-400 mb-6" id="pin-subtitle">Amankan akses aplikasi Finanzo Anda</p>
+            <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-1" id="pin-title">Masukkan PIN</h2>
+            <p class="text-xs text-gray-500 mb-6" id="pin-subtitle">Amankan akses aplikasi Finanzo Anda</p>
 
             <div class="flex justify-center gap-3 mb-4" id="pin-dots">
-                <span class="w-3.5 h-3.5 rounded-full border-2 border-slateink-400/40 dark:border-slateink-700 pin-dot"></span>
-                <span class="w-3.5 h-3.5 rounded-full border-2 border-slateink-400/40 dark:border-slateink-700 pin-dot"></span>
-                <span class="w-3.5 h-3.5 rounded-full border-2 border-slateink-400/40 dark:border-slateink-700 pin-dot"></span>
-                <span class="w-3.5 h-3.5 rounded-full border-2 border-slateink-400/40 dark:border-slateink-700 pin-dot"></span>
+                <span class="w-3.5 h-3.5 rounded-full border-2 border-gray-300 dark:border-gray-600 pin-dot"></span>
+                <span class="w-3.5 h-3.5 rounded-full border-2 border-gray-300 dark:border-gray-600 pin-dot"></span>
+                <span class="w-3.5 h-3.5 rounded-full border-2 border-gray-300 dark:border-gray-600 pin-dot"></span>
+                <span class="w-3.5 h-3.5 rounded-full border-2 border-gray-300 dark:border-gray-600 pin-dot"></span>
             </div>
 
-            <p id="pin-error" class="text-xs text-brick-500 font-semibold mb-4 h-4"></p>
+            <p id="pin-error" class="text-xs text-red-500 font-semibold mb-4 h-4"></p>
 
             <div class="grid grid-cols-3 gap-4">
                 <button onclick="pinPress('1')" class="pin-key">1</button>
@@ -143,111 +103,103 @@
         <!-- HEADER -->
         <header id="main-header" class="p-6 flex justify-between items-center sticky top-0 bg-inherit z-10">
             <div>
-                <p class="text-[11px] uppercase tracking-wider font-semibold text-slateink-500" id="greeting">Selamat Datang,</p>
-                <h1 class="text-2xl font-display font-bold text-ink dark:text-white" id="header-user-name">User Finanzo</h1>
+                <p class="text-sm text-gray-500" id="greeting">Selamat Datang,</p>
+                <h1 class="text-xl font-bold text-gray-800 dark:text-white" id="header-user-name">User Finanzo</h1>
             </div>
             <div class="flex gap-3">
-                <button onclick="toggleTheme()" class="p-2.5 rounded-full glass-card btn-bounce shadow-sm text-ink dark:text-white">
+                <button onclick="toggleTheme()" class="p-2 rounded-full glass-card btn-bounce shadow-sm text-gray-800 dark:text-white">
                     <i data-lucide="moon" class="w-5 h-5" id="theme-icon"></i>
                 </button>
             </div>
         </header>
         
         <header id="simple-header" class="p-6 flex justify-between items-center sticky top-0 bg-inherit z-10 hidden">
-             <h1 class="text-2xl font-display font-bold text-ink dark:text-white" id="simple-header-title">Judul</h1>
-             <button onclick="toggleTheme()" class="p-2.5 rounded-full glass-card btn-bounce shadow-sm text-ink dark:text-white">
+             <h1 class="text-xl font-bold text-gray-800 dark:text-white" id="simple-header-title">Judul</h1>
+             <button onclick="toggleTheme()" class="p-2 rounded-full glass-card btn-bounce shadow-sm text-gray-800 dark:text-white">
                  <i data-lucide="moon" class="w-5 h-5" id="simple-theme-icon"></i>
              </button>
         </header>
 
         <main id="view-container" class="px-6">
             
-            <section id="view-home" class="view space-y-7">
-                <!-- Omset Card: gradient biru->hijau, gaya referensi -->
-                <div class="accent-gradient rounded-[2rem] pt-6 px-6 pb-6 text-white shadow-xl shadow-black/20 relative overflow-hidden" id="card-saldo">
+            <section id="view-home" class="view space-y-6">
+                <!-- Omset Card -->
+                <div class="bg-blue-600 rounded-3xl p-6 text-white shadow-xl shadow-blue-200 dark:shadow-none relative overflow-hidden" id="card-saldo">
                     <div class="relative z-10">
-                        <div class="flex items-center justify-center gap-2">
-                            <p class="opacity-80 text-sm">Total Omset Bulan Ini</p>
-                            <i data-lucide="repeat" class="w-3.5 h-3.5 opacity-60"></i>
-                        </div>
-                        <h2 class="text-4xl font-display font-bold mt-2 tracking-tight text-center" id="total-balance">Rp 0</h2>
-                        <div class="mt-6 grid grid-cols-2 gap-3">
-                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-3 border border-white/10">
-                                <p class="text-[10px] opacity-70 uppercase tracking-wide">Total Pesanan</p>
-                                <p class="font-tabular font-bold mt-0.5" id="total-orders">0 Nota</p>
-                            </div>
-                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-3 border border-white/10">
-                                <p class="text-[10px] opacity-70 uppercase tracking-wide">Item Terjual</p>
-                                <p class="font-tabular font-bold mt-0.5" id="total-qty">0 Qty</p>
-                            </div>
+                        <p class="opacity-80 text-sm">Total Omset Bulan Ini</p>
+                        <h2 class="text-3xl font-bold mt-1" id="total-balance">Rp 0</h2>
+                        <div class="mt-6 flex justify-between gap-4">
+                            <div><p class="text-xs opacity-70 italic">Total Pesanan</p><p class="font-semibold" id="total-orders">0 Nota</p></div>
+                            <div class="text-right"><p class="text-xs opacity-70 italic">Total Item Terjual</p><p class="font-semibold" id="total-qty">0 Qty</p></div>
                         </div>
                     </div>
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
                 </div>
 
                 <div class="grid grid-cols-3 gap-4">
                     <button onclick="switchView('catat', true, 'masuk')" class="flex flex-col items-center gap-2 p-4 glass-card rounded-2xl btn-bounce">
-                        <div class="p-3 bg-emerald-500/15 text-emerald-500 rounded-xl"><i data-lucide="arrow-up-right" class="w-6 h-6"></i></div>
-                        <span class="text-xs font-medium text-ink dark:text-gray-200">Masuk</span>
+                        <div class="p-3 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-xl"><i data-lucide="arrow-up-right" class="w-6 h-6"></i></div>
+                        <span class="text-xs font-medium text-gray-800 dark:text-gray-200">Masuk</span>
                     </button>
                     <button onclick="switchView('catat', true, 'keluar')" class="flex flex-col items-center gap-2 p-4 glass-card rounded-2xl btn-bounce">
-                        <div class="p-3 bg-brick-500/15 text-brick-500 rounded-xl"><i data-lucide="arrow-down-left" class="w-6 h-6"></i></div>
-                        <span class="text-xs font-medium text-ink dark:text-gray-200">Keluar</span>
+                        <div class="p-3 bg-red-100 dark:bg-red-900/30 text-red-600 rounded-xl"><i data-lucide="arrow-down-left" class="w-6 h-6"></i></div>
+                        <span class="text-xs font-medium text-gray-800 dark:text-gray-200">Keluar</span>
                     </button>
                     <button onclick="switchView('nota', true)" class="flex flex-col items-center gap-2 p-4 glass-card rounded-2xl btn-bounce">
-                        <div class="p-3 bg-marigold-500/15 text-marigold-500 rounded-xl"><i data-lucide="file-text" class="w-6 h-6"></i></div>
-                        <span class="text-xs font-medium text-ink dark:text-gray-200">Buat Nota</span>
+                        <div class="p-3 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-xl"><i data-lucide="file-text" class="w-6 h-6"></i></div>
+                        <span class="text-xs font-medium text-gray-800 dark:text-gray-200">Buat Nota</span>
                     </button>
                 </div>
 
                 <div>
                     <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-display font-bold text-lg text-ink dark:text-white">Nota Terbaru</h3>
-                        <button onclick="switchView('nota')" class="text-emerald-500 text-xs font-semibold">Lihat Semua</button>
+                        <h3 class="font-bold text-gray-800 dark:text-white">5 Nota Terbaru</h3>
+                        <button onclick="switchView('nota')" class="text-blue-500 text-xs font-medium">Lihat Semua</button>
                     </div>
-                    <div id="recent-list" class="space-y-3"></div>
+                    <div id="recent-list" class="space-y-4"></div>
                 </div>
             </section>
 
             <section id="view-catat" class="view hidden space-y-4">
                 <div class="flex justify-between items-center pb-2">
-                    <div class="flex bg-ink/5 dark:bg-white/5 p-1 rounded-full gap-1">
-                        <button onclick="setFilterType('all')" id="tab-all" class="px-3 py-1.5 text-[10px] font-bold rounded-full bg-white text-ink shadow-sm transition-all">Semua</button>
-                        <button onclick="setFilterType('masuk')" id="tab-masuk" class="px-3 py-1.5 text-[10px] font-bold rounded-full text-slateink-400 hover:text-ink dark:hover:text-gray-300 transition-all">Masuk</button>
-                        <button onclick="setFilterType('keluar')" id="tab-keluar" class="px-3 py-1.5 text-[10px] font-bold rounded-full text-slateink-400 hover:text-ink dark:hover:text-gray-300 transition-all">Keluar</button>
+                    <div class="flex bg-gray-100 dark:bg-slate-800 p-1 rounded-xl">
+                        <button onclick="setFilterType('all')" id="tab-all" class="px-3 py-1.5 text-[10px] font-bold rounded-lg bg-white dark:bg-slate-700 text-blue-600 shadow-sm transition-all">Semua</button>
+                        <button onclick="setFilterType('masuk')" id="tab-masuk" class="px-3 py-1.5 text-[10px] font-bold rounded-lg text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-all">Masuk</button>
+                        <button onclick="setFilterType('keluar')" id="tab-keluar" class="px-3 py-1.5 text-[10px] font-bold rounded-lg text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-all">Keluar</button>
                     </div>
                     <div class="flex gap-1 relative">
-                        <button onclick="toggleSearch()" class="p-2 text-slateink-400 hover:bg-ink/5 dark:hover:bg-white/5 rounded-full transition-colors"><i data-lucide="search" class="w-4 h-4"></i></button>
-                        <button onclick="toggleDateFilter()" class="p-2 text-slateink-400 hover:bg-ink/5 dark:hover:bg-white/5 rounded-full transition-colors"><i data-lucide="sliders-horizontal" class="w-4 h-4"></i></button>
-                        <button onclick="toggleExportMenu()" class="p-2 text-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20 rounded-full transition-colors"><i data-lucide="sheet" class="w-4 h-4"></i></button>
+                        <button onclick="toggleSearch()" class="p-2 text-gray-500 hover:bg-gray-200 dark:hover:bg-slate-700 rounded-full transition-colors"><i data-lucide="search" class="w-4 h-4"></i></button>
+                        <button onclick="toggleDateFilter()" class="p-2 text-gray-500 hover:bg-gray-200 dark:hover:bg-slate-700 rounded-full transition-colors"><i data-lucide="sliders-horizontal" class="w-4 h-4"></i></button>
+                        <button onclick="toggleExportMenu()" class="p-2 text-green-600 bg-green-50 dark:bg-green-900/20 hover:bg-green-100 rounded-full transition-colors"><i data-lucide="sheet" class="w-4 h-4"></i></button>
                         
-                        <div id="export-menu" class="hidden absolute right-0 top-10 w-48 bg-white dark:bg-night-card shadow-xl border border-ink/5 dark:border-night-border rounded-xl z-20 overflow-hidden">
-                            <button onclick="exportExcel('month')" class="w-full text-left px-4 py-3 text-xs border-b border-ink/5 dark:border-night-border hover:bg-emerald-500/10 text-ink dark:text-gray-200">Laporan Bulan Ini</button>
-                            <button onclick="exportExcel('year')" class="w-full text-left px-4 py-3 text-xs border-b border-ink/5 dark:border-night-border hover:bg-emerald-500/10 text-ink dark:text-gray-200">Laporan Tahun Ini</button>
-                            <button onclick="toggleDateRangeExport()" class="w-full text-left px-4 py-3 text-xs font-bold text-emerald-500 hover:bg-emerald-500/10">Export Range Tanggal</button>
-                            <button onclick="exportExcel('filter')" class="w-full text-left px-4 py-3 text-xs border-t border-ink/5 dark:border-night-border hover:bg-emerald-500/10 text-ink dark:text-gray-200">Export Sesuai Tabel</button>
+                        <div id="export-menu" class="hidden absolute right-0 top-10 w-48 bg-white dark:bg-slate-800 shadow-xl border border-gray-100 dark:border-gray-700 rounded-xl z-20 overflow-hidden">
+                            <button onclick="exportExcel('month')" class="w-full text-left px-4 py-3 text-xs border-b border-gray-50 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-200">Laporan Bulan Ini</button>
+                            <button onclick="exportExcel('year')" class="w-full text-left px-4 py-3 text-xs border-b border-gray-50 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-200">Laporan Tahun Ini</button>
+                            <button onclick="toggleDateRangeExport()" class="w-full text-left px-4 py-3 text-xs font-bold text-blue-600 hover:bg-blue-50 dark:hover:bg-slate-700">Export Range Tanggal</button>
+                            <button onclick="exportExcel('filter')" class="w-full text-left px-4 py-3 text-xs border-t border-gray-50 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-200">Export Sesuai Tabel</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Summary Stats -->
-                <table class="w-full table-fixed border-collapse glass-card rounded-2xl p-3">
+                <table class="w-full table-fixed border-collapse">
                     <thead>
                         <tr>
-                            <th class="text-[8px] text-slateink-400 uppercase font-semibold tracking-wide text-center pb-1 pt-2 w-1/3">Pemasukan</th>
-                            <th class="text-[8px] text-slateink-400 uppercase font-semibold tracking-wide text-center pb-1 pt-2 w-1/3">Pengeluaran</th>
-                            <th class="text-[8px] text-slateink-400 uppercase font-semibold tracking-wide text-center pb-1 pt-2 w-1/3">Saldo</th>
+                            <th class="text-[8px] text-gray-500 uppercase font-semibold tracking-wide text-center pb-1 w-1/3">Pemasukan</th>
+                            <th class="text-[8px] text-gray-500 uppercase font-semibold tracking-wide text-center pb-1 w-1/3">Pengeluaran</th>
+                            <th class="text-[8px] text-gray-500 uppercase font-semibold tracking-wide text-center pb-1 w-1/3">Saldo</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-center align-top px-0.5 pb-2">
-                                <p class="text-[10px] font-tabular font-semibold text-emerald-500 leading-tight break-all" id="stat-masuk">Rp 0</p>
+                            <td class="text-center align-top px-0.5">
+                                <p class="text-[10px] font-semibold text-green-600 leading-tight break-all" id="stat-masuk">Rp 0</p>
                             </td>
-                            <td class="text-center align-top px-0.5 pb-2">
-                                <p class="text-[10px] font-tabular font-semibold text-brick-500 leading-tight break-all" id="stat-keluar">Rp 0</p>
+                            <td class="text-center align-top px-0.5">
+                                <p class="text-[10px] font-semibold text-red-600 leading-tight break-all" id="stat-keluar">Rp 0</p>
                             </td>
-                            <td class="text-center align-top px-0.5 pb-2">
-                                <p class="text-[10px] font-tabular font-semibold text-ink dark:text-white leading-tight break-all" id="stat-saldo">Rp 0</p>
+                            <td class="text-center align-top px-0.5">
+                                <p class="text-[10px] font-semibold text-blue-600 leading-tight break-all" id="stat-saldo">Rp 0</p>
                             </td>
                         </tr>
                     </tbody>
@@ -255,33 +207,33 @@
 
                 <!-- Period Filter -->
                 <div class="flex gap-2 flex-wrap">
-                    <button onclick="setDateRange('all')" class="px-3 py-1.5 text-xs font-bold bg-white text-ink rounded-full transition-colors" id="btn-filter-all">Semua</button>
-                    <button onclick="setDateRange('today')" class="px-3 py-1.5 text-xs font-bold bg-transparent text-slateink-400 rounded-full hover:bg-ink/5 dark:hover:bg-white/5 transition-colors">Hari Ini</button>
-                    <button onclick="setDateRange('week')" class="px-3 py-1.5 text-xs font-bold bg-transparent text-slateink-400 rounded-full hover:bg-ink/5 dark:hover:bg-white/5 transition-colors">1 Minggu</button>
-                    <button onclick="setDateRange('month')" class="px-3 py-1.5 text-xs font-bold bg-transparent text-slateink-400 rounded-full hover:bg-ink/5 dark:hover:bg-white/5 transition-colors">1 Bulan</button>
-                    <button onclick="setDateRange('quarter')" class="px-3 py-1.5 text-xs font-bold bg-transparent text-slateink-400 rounded-full hover:bg-ink/5 dark:hover:bg-white/5 transition-colors">3 Bulan</button>
-                    <button onclick="setDateRange('year')" class="px-3 py-1.5 text-xs font-bold bg-transparent text-slateink-400 rounded-full hover:bg-ink/5 dark:hover:bg-white/5 transition-colors">1 Tahun</button>
+                    <button onclick="setDateRange('all')" class="px-3 py-1.5 text-xs font-bold bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 transition-colors" id="btn-filter-all">Semua</button>
+                    <button onclick="setDateRange('today')" class="px-3 py-1.5 text-xs font-bold bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 transition-colors">Hari Ini</button>
+                    <button onclick="setDateRange('week')" class="px-3 py-1.5 text-xs font-bold bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 transition-colors">1 Minggu</button>
+                    <button onclick="setDateRange('month')" class="px-3 py-1.5 text-xs font-bold bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 transition-colors">1 Bulan</button>
+                    <button onclick="setDateRange('quarter')" class="px-3 py-1.5 text-xs font-bold bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 transition-colors">3 Bulan</button>
+                    <button onclick="setDateRange('year')" class="px-3 py-1.5 text-xs font-bold bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 transition-colors">1 Tahun</button>
                 </div>
 
                 <div id="search-container" class="hidden animate-slide-up">
-                    <input type="text" id="search-catat" placeholder="Ketik keterangan catatan..." class="w-full bg-white dark:bg-night-card border border-ink/10 dark:border-night-border p-3 rounded-xl text-xs outline-none focus:border-emerald-500 transition-all shadow-sm">
+                    <input type="text" id="search-catat" placeholder="Ketik keterangan catatan..." class="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 p-3 rounded-xl text-xs outline-none focus:border-blue-500 transition-all shadow-sm">
                 </div>
                 <div id="date-filter-container" class="hidden animate-slide-up glass-card p-3 rounded-xl grid grid-cols-2 gap-2">
                     <div>
-                        <label class="text-[9px] text-slateink-400 ml-1 uppercase font-bold">Dari Tanggal</label>
-                        <input type="date" id="filter-date-start" class="w-full bg-white dark:bg-night-card2 border border-ink/10 dark:border-night-border p-2 rounded-lg text-xs outline-none">
+                        <label class="text-[9px] text-gray-500 ml-1 uppercase font-bold">Dari Tanggal</label>
+                        <input type="date" id="filter-date-start" class="w-full bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-700 p-2 rounded-lg text-xs outline-none">
                     </div>
                     <div>
-                        <label class="text-[9px] text-slateink-400 ml-1 uppercase font-bold">Sampai Tanggal</label>
-                        <input type="date" id="filter-date-end" class="w-full bg-white dark:bg-night-card2 border border-ink/10 dark:border-night-border p-2 rounded-lg text-xs outline-none">
+                        <label class="text-[9px] text-gray-500 ml-1 uppercase font-bold">Sampai Tanggal</label>
+                        <input type="date" id="filter-date-end" class="w-full bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-700 p-2 rounded-lg text-xs outline-none">
                     </div>
                 </div>
 
-                <p class="text-[10px] text-slateink-400 italic text-right">💡 Klik baris untuk mengedit/menghapus</p>
+                <p class="text-[10px] text-gray-400 italic text-right">💡 Klik baris untuk mengedit/menghapus</p>
                 <div class="glass-card rounded-2xl p-2 overflow-hidden">
                     <div class="overflow-x-auto no-scrollbar">
                         <table class="w-full text-left text-sm">
-                            <tbody id="table-catat-body" class="divide-y divide-ink/5 dark:divide-white/5"></tbody>
+                            <tbody id="table-catat-body" class="divide-y divide-gray-100 dark:divide-gray-800"></tbody>
                         </table>
                     </div>
                 </div>
@@ -289,10 +241,10 @@
 
             <section id="view-nota" class="view hidden space-y-4">
                 <div class="flex justify-between items-center pb-2">
-                    <p class="text-[10px] text-slateink-400 italic">💡 Klik nota untuk mengedit</p>
+                    <p class="text-[10px] text-gray-400 italic">💡 Klik nota untuk mengedit</p>
                     <div class="relative flex-1 max-w-[150px]">
-                        <input type="text" id="search-nota" placeholder="Cari nama..." class="bg-white dark:bg-night-card p-2 pl-8 rounded-xl text-xs w-full outline-none border border-ink/10 shadow-sm dark:border-night-border focus:border-emerald-500">
-                        <i data-lucide="search" class="w-3 h-3 absolute left-3 top-2.5 text-slateink-400"></i>
+                        <input type="text" id="search-nota" placeholder="Cari nama..." class="bg-white dark:bg-slate-800 p-2 pl-8 rounded-xl text-xs w-full outline-none border border-gray-200 shadow-sm dark:border-gray-700 focus:border-blue-500">
+                        <i data-lucide="search" class="w-3 h-3 absolute left-3 top-2.5 text-gray-400"></i>
                     </div>
                 </div>
                 <div id="nota-list-container" class="space-y-3 pb-10"></div>
@@ -301,190 +253,190 @@
             <section id="view-setup" class="view hidden space-y-6">
                 <div class="glass-card rounded-3xl p-6 space-y-6">
                     <div>
-                        <label class="block text-xs font-semibold text-slateink-400 mb-2 uppercase tracking-wide">Profil Anda</label>
-                        <input type="text" id="setup-user-name" placeholder="Nama Pemilik" class="w-full p-3 bg-ink/5 dark:bg-night-card2 rounded-xl outline-none text-sm mb-3 border border-transparent focus:border-emerald-500 text-ink dark:text-white">
+                        <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase">Profil Anda</label>
+                        <input type="text" id="setup-user-name" placeholder="Nama Pemilik" class="w-full p-3 bg-gray-100 dark:bg-slate-800 rounded-xl outline-none text-sm mb-3 border border-transparent focus:border-blue-500 text-gray-800 dark:text-white">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slateink-400 mb-2 uppercase tracking-wide">Informasi Toko (Untuk Nota)</label>
-                        <input type="text" id="setup-store-name" placeholder="Nama Toko" class="w-full p-3 bg-ink/5 dark:bg-night-card2 rounded-xl outline-none text-sm mb-2 border border-transparent focus:border-emerald-500 text-ink dark:text-white">
-                        <textarea id="setup-store-address" placeholder="Alamat lengkap & No. HP Toko" class="w-full p-3 bg-ink/5 dark:bg-night-card2 rounded-xl outline-none text-sm mb-2 h-20 border border-transparent focus:border-emerald-500 text-ink dark:text-white"></textarea>
-                        <textarea id="setup-store-footer" placeholder="Keterangan Bawah Nota (Cth: Daftar Rekening Pembayaran)" class="w-full p-3 bg-ink/5 dark:bg-night-card2 rounded-xl outline-none text-sm h-20 border border-transparent focus:border-emerald-500 text-ink dark:text-white"></textarea>
+                        <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase">Informasi Toko (Untuk Nota)</label>
+                        <input type="text" id="setup-store-name" placeholder="Nama Toko" class="w-full p-3 bg-gray-100 dark:bg-slate-800 rounded-xl outline-none text-sm mb-2 border border-transparent focus:border-blue-500 text-gray-800 dark:text-white">
+                        <textarea id="setup-store-address" placeholder="Alamat lengkap & No. HP Toko" class="w-full p-3 bg-gray-100 dark:bg-slate-800 rounded-xl outline-none text-sm mb-2 h-20 border border-transparent focus:border-blue-500 text-gray-800 dark:text-white"></textarea>
+                        <textarea id="setup-store-footer" placeholder="Keterangan Bawah Nota (Cth: Daftar Rekening Pembayaran)" class="w-full p-3 bg-gray-100 dark:bg-slate-800 rounded-xl outline-none text-sm h-20 border border-transparent focus:border-blue-500 text-gray-800 dark:text-white"></textarea>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slateink-400 mb-2 uppercase tracking-wide">Warna Tema App</label>
-                        <div class="flex items-center justify-between p-3 bg-ink/5 dark:bg-night-card2 rounded-xl">
-                            <span class="text-sm text-ink dark:text-white">Pilih Warna Aksen</span>
-                            <input type="color" id="setup-color" oninput="document.documentElement.style.setProperty('--accent', this.value)" class="h-8 w-8 rounded cursor-pointer border-none bg-transparent">
+                        <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase">Warna Tema App</label>
+                        <div class="flex items-center justify-between p-3 bg-gray-100 dark:bg-slate-800 rounded-xl">
+                            <span class="text-sm text-gray-800 dark:text-white">Pilih Warna Aksen</span>
+                            <input type="color" id="setup-color" class="h-8 w-8 rounded cursor-pointer border-none bg-transparent">
                         </div>
                     </div>
                     
-                    <div class="pt-4 border-t border-dashed border-ink/10 dark:border-night-border">
-                        <label class="block text-xs font-semibold text-slateink-400 mb-2 uppercase tracking-wide">Keamanan</label>
-                        <button onclick="openChangePinModal()" class="w-full p-3 bg-emerald-500/10 text-emerald-500 rounded-xl text-xs font-bold flex items-center justify-center gap-2 hover:bg-emerald-500/20 transition-colors">
+                    <div class="pt-4 border-t dark:border-gray-800">
+                        <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase">Keamanan</label>
+                        <button onclick="openChangePinModal()" class="w-full p-3 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl text-xs font-bold flex items-center justify-center gap-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
                             <i data-lucide="key-round" class="w-4 h-4"></i> Ubah PIN Aplikasi
                         </button>
                     </div>
                     
-                    <div class="pt-4 border-t border-dashed border-ink/10 dark:border-night-border">
-                        <label class="block text-xs font-semibold text-slateink-400 mb-2 uppercase tracking-wide">Export Data</label>
-                        <button onclick="exportAllDataExcel()" class="w-full p-3 bg-emerald-500/10 text-emerald-500 rounded-xl text-xs font-bold flex items-center justify-center gap-2 hover:bg-emerald-500/20 transition-colors">
+                    <div class="pt-4 border-t dark:border-gray-800">
+                        <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase">Export Data</label>
+                        <button onclick="exportAllDataExcel()" class="w-full p-3 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-xl text-xs font-bold flex items-center justify-center gap-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
                             <i data-lucide="download" class="w-4 h-4"></i> Export Semua Data ke Excel
                         </button>
                     </div>
                     
-                    <button id="btn-install-pwa" onclick="installPWA()" class="w-full p-3 bg-emerald-500/10 text-emerald-500 rounded-xl text-xs font-bold flex items-center justify-center gap-2 hidden">
+                    <button id="btn-install-pwa" onclick="installPWA()" class="w-full p-3 bg-green-50 dark:bg-green-900/30 text-green-600 rounded-xl text-xs font-bold flex items-center justify-center gap-2 hidden">
                         <i data-lucide="download" class="w-4 h-4"></i> Install Aplikasi ke HP
                     </button>
 
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-dashed border-ink/10 dark:border-night-border">
-                        <button onclick="exportFullData()" class="p-3 bg-marigold-500/10 text-marigold-500 rounded-xl text-xs font-bold flex items-center justify-center gap-2"><i data-lucide="download-cloud" class="w-4 h-4"></i> Backup JSON</button>
-                        <button onclick="document.getElementById('file-import').click()" class="p-3 bg-brick-500/10 text-brick-500 rounded-xl text-xs font-bold flex items-center justify-center gap-2 relative"><i data-lucide="upload-cloud" class="w-4 h-4"></i> Restore JSON<input type="file" id="file-import" class="hidden" accept=".json" onchange="handleImport(event)"></button>
+                    <div class="grid grid-cols-2 gap-3 pt-4 border-t dark:border-gray-800">
+                        <button onclick="exportFullData()" class="p-3 bg-blue-50 text-blue-600 dark:bg-blue-900/30 rounded-xl text-xs font-bold flex items-center justify-center gap-2"><i data-lucide="download-cloud" class="w-4 h-4"></i> Backup JSON</button>
+                        <button onclick="document.getElementById('file-import').click()" class="p-3 bg-orange-50 text-orange-600 dark:bg-orange-900/30 rounded-xl text-xs font-bold flex items-center justify-center gap-2 relative"><i data-lucide="upload-cloud" class="w-4 h-4"></i> Restore JSON<input type="file" id="file-import" class="hidden" accept=".json" onchange="handleImport(event)"></button>
                     </div>
                 </div>
-                <button onclick="saveSetup()" class="w-full accent-gradient text-white p-4 rounded-2xl font-bold shadow-lg shadow-black/20 transition-colors">Simpan Pengaturan</button>
+                <button onclick="saveSetup()" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-2xl font-bold shadow-lg shadow-blue-200 dark:shadow-none transition-colors">Simpan Pengaturan</button>
             </section>
         </main>
 
-        <nav class="fixed bottom-5 left-6 right-6 max-w-md mx-auto bg-white/95 dark:bg-night-card/95 backdrop-blur-lg border border-ink/10 dark:border-night-border px-6 py-3 rounded-full flex justify-between items-center z-40 shadow-xl shadow-black/10 dark:shadow-black/30">
-            <button onclick="switchView('home')" id="nav-home" class="nav-item flex flex-col items-center gap-1 active"><i data-lucide="home" class="w-5 h-5"></i></button>
-            <button onclick="switchView('catat')" id="nav-catat" class="nav-item flex flex-col items-center gap-1 text-slateink-400"><i data-lucide="arrow-right-left" class="w-5 h-5"></i></button>
-            <div class="relative -top-7"><button onclick="openFormOptions()" class="accent-solid text-white p-4 rounded-full shadow-xl shadow-black/30 btn-bounce border-4 border-paper dark:border-ink transition-colors" id="btn-main-add"><i data-lucide="plus" class="w-6 h-6"></i></button></div>
-            <button onclick="switchView('nota')" id="nav-nota" class="nav-item flex flex-col items-center gap-1 text-slateink-400"><i data-lucide="receipt" class="w-5 h-5"></i></button>
-            <button onclick="switchView('setup')" id="nav-setup" class="nav-item flex flex-col items-center gap-1 text-slateink-400"><i data-lucide="settings" class="w-5 h-5"></i></button>
+        <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg border-t dark:border-gray-800 px-6 py-3 flex justify-between items-center z-40">
+            <button onclick="switchView('home')" id="nav-home" class="nav-item flex flex-col items-center gap-1 active"><i data-lucide="home" class="w-6 h-6"></i><span class="text-[10px] font-medium">Beranda</span></button>
+            <button onclick="switchView('catat')" id="nav-catat" class="nav-item flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500"><i data-lucide="arrow-right-left" class="w-6 h-6"></i><span class="text-[10px] font-medium">Catat</span></button>
+            <div class="relative -top-8"><button onclick="openFormOptions()" class="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-xl shadow-blue-300 dark:shadow-none btn-bounce border-4 border-gray-50 dark:border-slate-900 transition-colors" id="btn-main-add"><i data-lucide="plus" class="w-7 h-7"></i></button></div>
+            <button onclick="switchView('nota')" id="nav-nota" class="nav-item flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500"><i data-lucide="receipt" class="w-6 h-6"></i><span class="text-[10px] font-medium">Nota</span></button>
+            <button onclick="switchView('setup')" id="nav-setup" class="nav-item flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500"><i data-lucide="settings" class="w-6 h-6"></i><span class="text-[10px] font-medium">Atur</span></button>
         </nav>
     </div>
 
     <!-- MODAL: FORM CATAT -->
-    <div id="modal-catat" class="fixed inset-0 bg-ink/60 backdrop-blur-sm z-50 flex items-end justify-center hidden">
-        <div class="bg-white dark:bg-night-card w-full max-w-md rounded-t-[2.5rem] p-8 space-y-6 animate-slide-up relative">
+    <div id="modal-catat" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end justify-center hidden">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-t-[2.5rem] p-8 space-y-6 animate-slide-up relative">
             <div class="flex justify-between items-center">
-                <h3 class="text-xl font-display font-bold text-ink dark:text-white" id="catat-modal-title">Catat Transaksi</h3>
-                <button onclick="closeModal('modal-catat')" class="text-slateink-500 bg-ink/5 dark:bg-white/5 p-2 rounded-full hover:bg-ink/10 transition-colors"><i data-lucide="x" class="w-4 h-4"></i></button>
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white" id="catat-modal-title">Catat Transaksi</h3>
+                <button onclick="closeModal('modal-catat')" class="text-gray-400 bg-gray-100 dark:bg-slate-800 p-2 rounded-full hover:bg-gray-200 transition-colors"><i data-lucide="x" class="w-4 h-4"></i></button>
             </div>
             <div class="grid grid-cols-2 gap-3">
-                <button onclick="selectType('masuk')" id="btn-type-masuk" class="p-3 rounded-2xl border-2 border-emerald-500 bg-emerald-500/10 text-emerald-500 font-bold text-sm">Pemasukan</button>
-                <button onclick="selectType('keluar')" id="btn-type-keluar" class="p-3 rounded-2xl border-2 border-transparent bg-ink/5 dark:bg-white/5 text-slateink-400 font-bold text-sm">Pengeluaran</button>
+                <button onclick="selectType('masuk')" id="btn-type-masuk" class="p-3 rounded-2xl border-2 border-green-500 bg-green-50 text-green-600 font-bold text-sm">Pemasukan</button>
+                <button onclick="selectType('keluar')" id="btn-type-keluar" class="p-3 rounded-2xl border-2 border-transparent bg-gray-100 dark:bg-slate-800 text-gray-400 font-bold text-sm">Pengeluaran</button>
             </div>
             <input type="hidden" id="form-catat-id" value="">
             <input type="hidden" id="form-catat-type" value="masuk">
             <div class="space-y-4">
                 <div>
-                    <label class="text-xs text-slateink-500 ml-1">Tanggal</label>
-                    <input type="date" id="form-catat-date" class="w-full p-4 bg-ink/5 dark:bg-white/5 rounded-2xl outline-none mt-1 text-sm border border-transparent focus:border-emerald-500 text-ink dark:text-white">
+                    <label class="text-xs text-gray-500 ml-1">Tanggal</label>
+                    <input type="date" id="form-catat-date" class="w-full p-4 bg-gray-100 dark:bg-slate-800 rounded-2xl outline-none mt-1 text-sm border border-transparent focus:border-blue-500 text-gray-800 dark:text-white">
                 </div>
                 <div>
-                    <label class="text-xs text-slateink-500 ml-1">Nominal</label>
+                    <label class="text-xs text-gray-500 ml-1">Nominal</label>
                     <div class="relative mt-1">
-                        <span class="absolute left-4 top-4 font-bold text-slateink-400 font-tabular">Rp</span>
-                        <input type="text" inputmode="numeric" id="form-catat-amount" placeholder="0" oninput="formatRupiahRealtime(this)" class="w-full p-4 pl-12 bg-ink/5 dark:bg-white/5 rounded-2xl outline-none font-bold font-tabular text-xl border border-transparent focus:border-emerald-500 text-ink dark:text-white">
+                        <span class="absolute left-4 top-4 font-bold text-gray-400">Rp</span>
+                        <input type="text" inputmode="numeric" id="form-catat-amount" placeholder="0" oninput="formatRupiahRealtime(this)" class="w-full p-4 pl-12 bg-gray-100 dark:bg-slate-800 rounded-2xl outline-none font-bold text-xl border border-transparent focus:border-blue-500 text-gray-800 dark:text-white">
                     </div>
                 </div>
                 <div>
-                    <label class="text-xs text-slateink-500 ml-1">Keterangan</label>
-                    <input type="text" id="form-catat-note" placeholder="Contoh: Beli bahan baku..." class="w-full p-4 bg-ink/5 dark:bg-white/5 rounded-2xl outline-none mt-1 text-sm border border-transparent focus:border-emerald-500 text-ink dark:text-white">
+                    <label class="text-xs text-gray-500 ml-1">Keterangan</label>
+                    <input type="text" id="form-catat-note" placeholder="Contoh: Beli bahan baku..." class="w-full p-4 bg-gray-100 dark:bg-slate-800 rounded-2xl outline-none mt-1 text-sm border border-transparent focus:border-blue-500 text-gray-800 dark:text-white">
                 </div>
             </div>
             <div class="flex gap-3">
-                <button id="btn-delete-catat" onclick="deleteRecord()" class="hidden flex-1 bg-brick-500/10 text-brick-500 dark:bg-red-900/20 p-4 rounded-2xl font-bold hover:bg-brick-500/20 transition-colors"><i data-lucide="trash-2" class="w-5 h-5 mx-auto"></i></button>
-                <button onclick="saveRecord()" class="flex-[3] accent-gradient text-white p-4 rounded-2xl font-bold shadow-lg shadow-black/20 transition-colors">Simpan Catatan</button>
+                <button id="btn-delete-catat" onclick="deleteRecord()" class="hidden flex-1 bg-red-50 text-red-600 dark:bg-red-900/20 p-4 rounded-2xl font-bold hover:bg-red-100 transition-colors"><i data-lucide="trash-2" class="w-5 h-5 mx-auto"></i></button>
+                <button onclick="saveRecord()" class="flex-[3] bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-2xl font-bold shadow-lg shadow-blue-200 dark:shadow-none transition-colors">Simpan Catatan</button>
             </div>
         </div>
     </div>
 
     <!-- MODAL: FORM NOTA -->
-    <div id="modal-nota" class="fixed inset-0 bg-ink/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-white dark:bg-night-card w-full max-w-md rounded-3xl p-6 max-h-[90vh] overflow-y-auto no-scrollbar relative animate-slide-up">
-            <div class="flex justify-between items-center mb-6 sticky top-0 bg-white dark:bg-night-card z-10 py-2 border-b border-dashed border-ink/10 dark:border-night-border">
-                <h3 class="text-xl font-display font-bold text-ink dark:text-white" id="nota-modal-title">Buat Nota Baru</h3>
-                <button onclick="closeModal('modal-nota')" class="text-slateink-500 bg-ink/5 dark:bg-white/5 p-2 rounded-full hover:bg-ink/10 transition-colors"><i data-lucide="x" class="w-4 h-4"></i></button>
+    <div id="modal-nota" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-3xl p-6 max-h-[90vh] overflow-y-auto no-scrollbar relative animate-slide-up">
+            <div class="flex justify-between items-center mb-6 sticky top-0 bg-white dark:bg-slate-900 z-10 py-2 border-b dark:border-gray-800">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white" id="nota-modal-title">Buat Nota Baru</h3>
+                <button onclick="closeModal('modal-nota')" class="text-gray-400 bg-gray-100 dark:bg-slate-800 p-2 rounded-full hover:bg-gray-200 transition-colors"><i data-lucide="x" class="w-4 h-4"></i></button>
             </div>
             <input type="hidden" id="nota-id" value="">
             
             <div class="space-y-4">
                 <div class="grid grid-cols-2 gap-3">
-                    <input type="text" id="nota-customer" placeholder="Nama Pelanggan" class="w-full p-3 bg-white dark:bg-night-card2 rounded-xl outline-none text-sm border border-ink/10 dark:border-night-border focus:border-emerald-500 text-ink dark:text-white">
-                    <input type="text" inputmode="numeric" id="nota-phone" placeholder="No. HP" class="w-full p-3 bg-white dark:bg-night-card2 rounded-xl outline-none text-sm border border-ink/10 dark:border-night-border focus:border-emerald-500 text-ink dark:text-white">
+                    <input type="text" id="nota-customer" placeholder="Nama Pelanggan" class="w-full p-3 bg-white dark:bg-slate-800 rounded-xl outline-none text-sm border border-gray-200 dark:border-gray-700 focus:border-blue-500 text-gray-800 dark:text-white">
+                    <input type="text" inputmode="numeric" id="nota-phone" placeholder="No. HP" class="w-full p-3 bg-white dark:bg-slate-800 rounded-xl outline-none text-sm border border-gray-200 dark:border-gray-700 focus:border-blue-500 text-gray-800 dark:text-white">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
-                    <div><label class="text-[10px] text-slateink-500 ml-1">Tgl Buat</label><input type="date" id="nota-date" class="w-full p-3 bg-white dark:bg-night-card2 rounded-xl outline-none text-sm border border-ink/10 dark:border-night-border focus:border-emerald-500 text-ink dark:text-white"></div>
-                    <div><label class="text-[10px] text-slateink-500 ml-1">Tgl Deadline</label><input type="date" id="nota-deadline" class="w-full p-3 bg-white dark:bg-night-card2 rounded-xl outline-none text-sm border border-ink/10 dark:border-night-border focus:border-emerald-500 text-ink dark:text-white"></div>
+                    <div><label class="text-[10px] text-gray-500 ml-1">Tgl Buat</label><input type="date" id="nota-date" class="w-full p-3 bg-white dark:bg-slate-800 rounded-xl outline-none text-sm border border-gray-200 dark:border-gray-700 focus:border-blue-500 text-gray-800 dark:text-white"></div>
+                    <div><label class="text-[10px] text-gray-500 ml-1">Tgl Deadline</label><input type="date" id="nota-deadline" class="w-full p-3 bg-white dark:bg-slate-800 rounded-xl outline-none text-sm border border-gray-200 dark:border-gray-700 focus:border-blue-500 text-gray-800 dark:text-white"></div>
                 </div>
                 
-                <div class="border-t border-dashed border-ink/10 dark:border-night-border pt-4">
-                    <p class="text-xs font-bold mb-2 uppercase tracking-wide text-slateink-500">Daftar Barang/Jasa</p>
+                <div class="border-t dark:border-gray-800 pt-4">
+                    <p class="text-xs font-bold mb-2 uppercase text-gray-500">Daftar Barang/Jasa</p>
                     <div id="nota-items-container" class="space-y-2"></div>
-                    <button onclick="addNotaItem()" class="mt-3 w-full border-2 border-dashed border-ink/15 dark:border-white/15 text-slateink-500 font-bold py-3 rounded-xl text-sm hover:bg-ink/5 dark:hover:bg-white/5 transition-colors">+ Tambah Baris Item</button>
+                    <button onclick="addNotaItem()" class="mt-3 w-full border-2 border-dashed border-gray-300 dark:border-gray-700 text-gray-500 font-bold py-3 rounded-xl text-sm hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">+ Tambah Baris Item</button>
                 </div>
 
-                <div class="border-t border-dashed border-ink/10 dark:border-night-border pt-4">
-                    <label class="text-[10px] text-slateink-500 uppercase font-bold">Diskon</label>
+                <div class="border-t dark:border-gray-800 pt-4">
+                    <label class="text-[10px] text-gray-500 uppercase font-bold">Diskon</label>
                     <div class="flex gap-2 mt-1">
-                        <select id="nota-discount-type" onchange="formatDiscountValue(document.getElementById('nota-discount-value')); calcNota()" class="p-3 bg-white dark:bg-night-card2 rounded-xl text-sm font-bold outline-none border border-ink/10 dark:border-night-border focus:border-emerald-500 text-ink dark:text-white">
+                        <select id="nota-discount-type" onchange="formatDiscountValue(document.getElementById('nota-discount-value')); calcNota()" class="p-3 bg-white dark:bg-slate-800 rounded-xl text-sm font-bold outline-none border border-gray-200 dark:border-gray-700 focus:border-blue-500 text-gray-800 dark:text-white">
                             <option value="percent">%</option>
                             <option value="nominal">Rp</option>
                         </select>
-                        <input type="text" inputmode="numeric" id="nota-discount-value" placeholder="0" oninput="formatDiscountValue(this); calcNota()" class="flex-1 p-3 bg-white dark:bg-night-card2 rounded-xl font-bold font-tabular text-sm outline-none border border-ink/10 dark:border-night-border focus:border-emerald-500 text-ink dark:text-white">
+                        <input type="text" inputmode="numeric" id="nota-discount-value" placeholder="0" oninput="formatDiscountValue(this); calcNota()" class="flex-1 p-3 bg-white dark:bg-slate-800 rounded-xl font-bold text-sm outline-none border border-gray-200 dark:border-gray-700 focus:border-blue-500 text-gray-800 dark:text-white">
                     </div>
                 </div>
 
-                <div class="border-t border-dashed border-ink/10 dark:border-night-border pt-4 grid grid-cols-2 gap-4">
+                <div class="border-t dark:border-gray-800 pt-4 grid grid-cols-2 gap-4">
                     <div>
-                        <label class="text-[10px] text-slateink-500 uppercase font-bold">DP / Dibayar</label>
+                        <label class="text-[10px] text-gray-500 uppercase font-bold">DP / Dibayar</label>
                         <div class="relative mt-1">
-                            <span class="absolute left-3 top-3 text-sm text-slateink-400 font-tabular">Rp</span>
-                            <input type="text" inputmode="numeric" id="nota-dp" placeholder="0" oninput="formatRupiahRealtime(this); calcNota()" class="w-full p-3 pl-8 bg-white dark:bg-night-card2 rounded-xl font-bold font-tabular text-sm outline-none border border-ink/10 dark:border-night-border focus:border-emerald-500 text-ink dark:text-white">
+                            <span class="absolute left-3 top-3 text-sm text-gray-400">Rp</span>
+                            <input type="text" inputmode="numeric" id="nota-dp" placeholder="0" oninput="formatRupiahRealtime(this); calcNota()" class="w-full p-3 pl-8 bg-white dark:bg-slate-800 rounded-xl font-bold text-sm outline-none border border-gray-200 dark:border-gray-700 focus:border-blue-500 text-gray-800 dark:text-white">
                         </div>
                     </div>
                     <div class="flex flex-col justify-end items-end">
-                        <label class="text-[10px] text-slateink-500 uppercase font-bold">Total</label>
-                        <p id="nota-subtotal-view" class="text-[10px] text-slateink-400 font-tabular line-through hidden"></p>
-                        <p id="nota-total-view" class="text-xl font-tabular font-black text-emerald-500 mt-1">Rp 0</p>
+                        <label class="text-[10px] text-gray-500 uppercase font-bold">Total</label>
+                        <p id="nota-subtotal-view" class="text-[10px] text-gray-400 line-through hidden"></p>
+                        <p id="nota-total-view" class="text-xl font-black text-blue-600 mt-1">Rp 0</p>
                     </div>
                 </div>
 
                 <div class="flex gap-3 mt-6">
-                    <button id="btn-delete-nota" onclick="deleteNota()" class="hidden flex-1 bg-brick-500/10 text-brick-500 dark:bg-red-900/20 p-4 rounded-2xl font-bold hover:bg-brick-500/20 transition-colors"><i data-lucide="trash-2" class="w-5 h-5 mx-auto"></i></button>
-                    <button onclick="saveNota()" class="flex-[3] accent-gradient text-white p-4 rounded-2xl font-bold shadow-lg shadow-black/20 transition-colors">Simpan Nota</button>
+                    <button id="btn-delete-nota" onclick="deleteNota()" class="hidden flex-1 bg-red-50 text-red-600 dark:bg-red-900/20 p-4 rounded-2xl font-bold hover:bg-red-100 transition-colors"><i data-lucide="trash-2" class="w-5 h-5 mx-auto"></i></button>
+                    <button onclick="saveNota()" class="flex-[3] bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-2xl font-bold shadow-lg shadow-blue-200 dark:shadow-none transition-colors">Simpan Nota</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- CHANGE PIN MODAL -->
-    <div id="modal-change-pin" class="fixed inset-0 bg-ink/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-white dark:bg-night-card w-full max-w-sm rounded-3xl p-6 relative animate-slide-up">
+    <div id="modal-change-pin" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-sm rounded-3xl p-6 relative animate-slide-up">
             <div class="flex justify-between items-center mb-6">
-                <h3 class="text-lg font-display font-bold text-ink dark:text-white">Ubah PIN Aplikasi</h3>
-                <button onclick="closeModal('modal-change-pin')" class="text-slateink-500 bg-ink/5 dark:bg-white/5 p-2 rounded-full hover:bg-ink/10 transition-colors"><i data-lucide="x" class="w-4 h-4"></i></button>
+                <h3 class="text-lg font-bold text-gray-800 dark:text-white">Ubah PIN Aplikasi</h3>
+                <button onclick="closeModal('modal-change-pin')" class="text-gray-400 bg-gray-100 dark:bg-slate-800 p-2 rounded-full hover:bg-gray-200 transition-colors"><i data-lucide="x" class="w-4 h-4"></i></button>
             </div>
             <div class="space-y-3">
                 <div>
-                    <label class="text-[10px] text-slateink-500 uppercase font-bold">PIN Saat Ini</label>
-                    <input type="password" inputmode="numeric" maxlength="4" id="change-pin-old" placeholder="****" class="w-full p-3 mt-1 bg-white dark:bg-night-card2 rounded-xl outline-none text-sm border border-ink/10 dark:border-night-border focus:border-emerald-500 text-ink dark:text-white tracking-widest font-tabular">
+                    <label class="text-[10px] text-gray-500 uppercase font-bold">PIN Saat Ini</label>
+                    <input type="password" inputmode="numeric" maxlength="4" id="change-pin-old" placeholder="****" class="w-full p-3 mt-1 bg-white dark:bg-slate-800 rounded-xl outline-none text-sm border border-gray-200 dark:border-gray-700 focus:border-blue-500 text-gray-800 dark:text-white tracking-widest">
                 </div>
                 <div>
-                    <label class="text-[10px] text-slateink-500 uppercase font-bold">PIN Baru (4 digit)</label>
-                    <input type="password" inputmode="numeric" maxlength="4" id="change-pin-new" placeholder="****" class="w-full p-3 mt-1 bg-white dark:bg-night-card2 rounded-xl outline-none text-sm border border-ink/10 dark:border-night-border focus:border-emerald-500 text-ink dark:text-white tracking-widest font-tabular">
+                    <label class="text-[10px] text-gray-500 uppercase font-bold">PIN Baru (4 digit)</label>
+                    <input type="password" inputmode="numeric" maxlength="4" id="change-pin-new" placeholder="****" class="w-full p-3 mt-1 bg-white dark:bg-slate-800 rounded-xl outline-none text-sm border border-gray-200 dark:border-gray-700 focus:border-blue-500 text-gray-800 dark:text-white tracking-widest">
                 </div>
                 <div>
-                    <label class="text-[10px] text-slateink-500 uppercase font-bold">Konfirmasi PIN Baru</label>
-                    <input type="password" inputmode="numeric" maxlength="4" id="change-pin-confirm" placeholder="****" class="w-full p-3 mt-1 bg-white dark:bg-night-card2 rounded-xl outline-none text-sm border border-ink/10 dark:border-night-border focus:border-emerald-500 text-ink dark:text-white tracking-widest font-tabular">
+                    <label class="text-[10px] text-gray-500 uppercase font-bold">Konfirmasi PIN Baru</label>
+                    <input type="password" inputmode="numeric" maxlength="4" id="change-pin-confirm" placeholder="****" class="w-full p-3 mt-1 bg-white dark:bg-slate-800 rounded-xl outline-none text-sm border border-gray-200 dark:border-gray-700 focus:border-blue-500 text-gray-800 dark:text-white tracking-widest">
                 </div>
             </div>
-            <button onclick="changePin()" class="w-full mt-6 accent-gradient text-white p-4 rounded-2xl font-bold shadow-lg shadow-black/20 transition-colors">Simpan PIN Baru</button>
+            <button onclick="changePin()" class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-2xl font-bold shadow-lg shadow-blue-200 dark:shadow-none transition-colors">Simpan PIN Baru</button>
         </div>
     </div>
 
     <!-- QUICK OPTIONS MODAL -->
-    <div id="modal-options" class="fixed inset-0 bg-ink/60 backdrop-blur-sm z-50 flex items-end justify-center hidden">
-        <div class="bg-white dark:bg-night-card w-full max-w-md rounded-t-[2.5rem] p-8 pb-12 animate-slide-up">
-            <h3 class="text-center font-display font-bold text-lg mb-6 text-ink dark:text-white">Pilih Tindakan Baru</h3>
+    <div id="modal-options" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end justify-center hidden">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-t-[2.5rem] p-8 pb-12 animate-slide-up">
+            <h3 class="text-center font-bold text-lg mb-6 text-gray-800 dark:text-white">Pilih Tindakan Baru</h3>
             <div class="grid grid-cols-3 gap-4">
-                <button onclick="switchView('catat', true, 'masuk'); closeModal('modal-options');" class="flex flex-col items-center gap-2"><div class="p-4 bg-emerald-500/10 text-emerald-500 rounded-full shadow-lg btn-bounce"><i data-lucide="arrow-up-right" class="w-8 h-8"></i></div><span class="text-xs font-bold mt-1 text-ink dark:text-white">Pemasukan</span></button>
-                <button onclick="switchView('catat', true, 'keluar'); closeModal('modal-options');" class="flex flex-col items-center gap-2"><div class="p-4 bg-brick-500/10 text-brick-500 rounded-full shadow-lg btn-bounce"><i data-lucide="arrow-down-left" class="w-8 h-8"></i></div><span class="text-xs font-bold mt-1 text-ink dark:text-white">Pengeluaran</span></button>
-                <button onclick="switchView('nota', true); closeModal('modal-options');" class="flex flex-col items-center gap-2"><div class="p-4 bg-marigold-500/10 text-marigold-500 rounded-full shadow-lg btn-bounce"><i data-lucide="file-text" class="w-8 h-8"></i></div><span class="text-xs font-bold mt-1 text-ink dark:text-white">Buat Nota</span></button>
+                <button onclick="switchView('catat', true, 'masuk'); closeModal('modal-options');" class="flex flex-col items-center gap-2"><div class="p-4 bg-green-100 text-green-600 rounded-full shadow-lg btn-bounce"><i data-lucide="arrow-up-right" class="w-8 h-8"></i></div><span class="text-xs font-bold mt-1 text-gray-800 dark:text-white">Pemasukan</span></button>
+                <button onclick="switchView('catat', true, 'keluar'); closeModal('modal-options');" class="flex flex-col items-center gap-2"><div class="p-4 bg-red-100 text-red-600 rounded-full shadow-lg btn-bounce"><i data-lucide="arrow-down-left" class="w-8 h-8"></i></div><span class="text-xs font-bold mt-1 text-gray-800 dark:text-white">Pengeluaran</span></button>
+                <button onclick="switchView('nota', true); closeModal('modal-options');" class="flex flex-col items-center gap-2"><div class="p-4 bg-blue-100 text-blue-600 rounded-full shadow-lg btn-bounce"><i data-lucide="file-text" class="w-8 h-8"></i></div><span class="text-xs font-bold mt-1 text-gray-800 dark:text-white">Buat Nota</span></button>
             </div>
-            <button onclick="closeModal('modal-options')" class="w-full mt-8 p-4 bg-ink/5 dark:bg-white/5 hover:bg-ink/10 dark:hover:bg-white/10 rounded-2xl font-bold text-slateink-500 transition-colors">Tutup</button>
+            <button onclick="closeModal('modal-options')" class="w-full mt-8 p-4 bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 rounded-2xl font-bold text-gray-500 transition-colors">Tutup</button>
         </div>
     </div>
 
@@ -492,16 +444,16 @@
     <div id="nota-fullscreen-view" class="fixed inset-0 bg-gray-900/95 backdrop-blur-md z-[60] flex flex-col hidden">
         
         <!-- Floating Header with Controls -->
-        <div class="flex justify-between items-center p-3 bg-white dark:bg-night-card border-b border-ink/10 dark:border-night-border sticky top-0 z-20 shadow-sm shrink-0">
-            <button onclick="closeNotaView()" class="p-2.5 bg-ink/5 dark:bg-white/5 text-slateink-600 dark:text-gray-300 rounded-full hover:bg-ink/10 transition-colors"><i data-lucide="arrow-left" class="w-5 h-5"></i></button>
+        <div class="flex justify-between items-center p-3 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-20 shadow-sm shrink-0">
+            <button onclick="closeNotaView()" class="p-2.5 bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-300 rounded-full hover:bg-gray-200 transition-colors"><i data-lucide="arrow-left" class="w-5 h-5"></i></button>
             
-            <div class="flex gap-1 bg-ink/5 dark:bg-white/5 p-1 rounded-xl">
-                <button onclick="setZoom('out')" class="p-1.5 text-slateink-500 hover:text-ink dark:hover:text-white"><i data-lucide="zoom-out" class="w-4 h-4"></i></button>
-                <button onclick="setZoom('fit')" class="px-3 py-1.5 text-xs font-bold text-slateink-600 dark:text-gray-300 border-l border-r border-ink/10 dark:border-night-border hover:text-emerald-500">FIT</button>
-                <button onclick="setZoom('in')" class="p-1.5 text-slateink-500 hover:text-ink dark:hover:text-white"><i data-lucide="zoom-in" class="w-4 h-4"></i></button>
+            <div class="flex gap-1 bg-gray-100 dark:bg-slate-800 p-1 rounded-xl">
+                <button onclick="setZoom('out')" class="p-1.5 text-gray-500 hover:text-gray-800 dark:hover:text-white"><i data-lucide="zoom-out" class="w-4 h-4"></i></button>
+                <button onclick="setZoom('fit')" class="px-3 py-1.5 text-xs font-bold text-gray-600 dark:text-gray-300 border-l border-r border-gray-200 dark:border-gray-700 hover:text-blue-500">FIT</button>
+                <button onclick="setZoom('in')" class="p-1.5 text-gray-500 hover:text-gray-800 dark:hover:text-white"><i data-lucide="zoom-in" class="w-4 h-4"></i></button>
             </div>
 
-            <button onclick="shareNotaPDF()" class="flex items-center gap-2 accent-gradient text-white px-5 py-2.5 rounded-full text-xs font-bold shadow-md transition-colors"><i data-lucide="send" class="w-4 h-4"></i> Kirim</button>
+            <button onclick="shareNotaPDF()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-xs font-bold shadow-md transition-colors"><i data-lucide="send" class="w-4 h-4"></i> Kirim</button>
         </div>
 
         <!-- Scrollable Document Area -->
@@ -515,7 +467,7 @@
                     
                     <div class="flex justify-between items-start border-b-2 border-gray-100 pb-8">
                         <div>
-                            <h1 id="inv-shop-name" class="text-4xl font-black text-emerald-600 uppercase tracking-tight">NAMA TOKO</h1>
+                            <h1 id="inv-shop-name" class="text-4xl font-black text-blue-600 uppercase tracking-tight">NAMA TOKO</h1>
                             <p id="inv-shop-address" class="text-gray-500 w-72 mt-2 leading-relaxed text-sm whitespace-pre-line"></p>
                         </div>
                         <div class="text-right">
@@ -533,7 +485,7 @@
                         </div>
                         <div class="text-right">
                             <p class="text-[10px] text-gray-400 uppercase font-bold mb-1 tracking-wider">Jatuh Tempo:</p>
-                            <h3 id="inv-cust-deadline" class="text-xl font-bold text-brick-500">-</h3>
+                            <h3 id="inv-cust-deadline" class="text-xl font-bold text-red-500">-</h3>
                         </div>
                     </div>
 
@@ -573,10 +525,10 @@
                                 <span id="inv-dp" class="font-bold text-green-600"></span>
                             </div>
                             
-                            <!-- Blok Sisa Tagihan (Gold Halus) -->
-                            <div class="mt-4 flex justify-between items-center bg-marigold-100 rounded-xl p-4 border border-marigold-300">
-                                <span class="text-sm font-bold text-marigold-700 uppercase tracking-widest">Sisa Tagihan</span>
-                                <span id="inv-sisa" class="text-xl font-black text-marigold-700"></span>
+                            <!-- Blok Sisa Tagihan (Kuning Halus) -->
+                            <div class="mt-4 flex justify-between items-center bg-[#fffbeb] rounded-xl p-4 border border-[#fde68a]">
+                                <span class="text-sm font-bold text-yellow-800 uppercase tracking-widest">Sisa Tagihan</span>
+                                <span id="inv-sisa" class="text-xl font-black text-yellow-900"></span>
                             </div>
                         </div>
                     </div>
@@ -596,6 +548,11 @@
         // ==========================================
         // 1. KONFIGURASI API (WAJIB DIISI)
         // ==========================================
+        // Catatan: backend (code.gs) sekarang menyimpan data sebagai TABEL
+        // spreadsheet normal (sheet Transaksi/Nota/Nota_Item/Profil), bukan
+        // JSON blob lagi. Kontrak GET/POST di bawah ini TIDAK berubah, jadi
+        // tidak ada perubahan logic yang dibutuhkan di sini. Kalau Anda deploy
+        // ulang code.gs baru, cukup pastikan API_URL di bawah tetap URL yang sama.
         const API_URL = "https://script.google.com/macros/s/AKfycbxoCRePrsXAgSqRg3s-ND-p9b_XKPJxP0V-nGLF6KdnE8MUqmkB6SkT_1m6GoJjkVPi/exec"; 
 
         // ==========================================
@@ -805,9 +762,9 @@
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
             document.getElementById(`view-${viewName}`).classList.remove('hidden');
             
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active', 'text-blue-500'));
             const activeNav = document.getElementById(`nav-${viewName}`);
-            if(activeNav) activeNav.classList.add('active');
+            if(activeNav) activeNav.classList.add('active', 'text-blue-500');
             state.activeView = viewName;
 
             if(viewName === 'home') {
@@ -843,7 +800,8 @@
                 icon1.setAttribute('data-lucide', 'moon'); icon2.setAttribute('data-lucide', 'moon');
             }
             if(state.user.color) {
-                document.documentElement.style.setProperty('--accent', state.user.color);
+                document.getElementById('card-saldo').style.backgroundColor = state.user.color;
+                document.getElementById('btn-main-add').style.backgroundColor = state.user.color;
             }
             lucide.createIcons();
         }
@@ -858,8 +816,8 @@
             currentFilterType = type;
             ['all', 'masuk', 'keluar'].forEach(t => {
                 const btn = document.getElementById(`tab-${t}`);
-                if(t === type) btn.className = "px-3 py-1.5 text-[10px] font-bold rounded-full bg-white text-ink shadow-sm transition-all";
-                else btn.className = "px-3 py-1.5 text-[10px] font-bold rounded-full text-slateink-400 hover:text-ink dark:hover:text-gray-300 transition-all";
+                if(t === type) btn.className = "px-3 py-1.5 text-[10px] font-bold rounded-lg bg-white dark:bg-slate-700 text-blue-600 shadow-sm transition-all";
+                else btn.className = "px-3 py-1.5 text-[10px] font-bold rounded-lg text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-all";
             });
             renderCatat();
         }
@@ -947,11 +905,11 @@
             document.getElementById('form-catat-type').value = type;
             const btnIn = document.getElementById('btn-type-masuk'); const btnOut = document.getElementById('btn-type-keluar');
             if(type === 'masuk') {
-                btnIn.className = "p-3 rounded-2xl border-2 border-emerald-500 bg-emerald-500/10 text-emerald-500 font-bold text-sm transition-all";
-                btnOut.className = "p-3 rounded-2xl border-2 border-transparent bg-ink/5 dark:bg-white/5 text-slateink-400 font-bold text-sm transition-all";
+                btnIn.className = "p-3 rounded-2xl border-2 border-green-500 bg-green-50 text-green-600 font-bold text-sm transition-all";
+                btnOut.className = "p-3 rounded-2xl border-2 border-transparent bg-gray-100 dark:bg-slate-800 text-gray-400 font-bold text-sm transition-all";
             } else {
-                btnOut.className = "p-3 rounded-2xl border-2 border-brick-500 bg-brick-500/10 text-brick-500 font-bold text-sm transition-all";
-                btnIn.className = "p-3 rounded-2xl border-2 border-transparent bg-ink/5 dark:bg-white/5 text-slateink-400 font-bold text-sm transition-all";
+                btnOut.className = "p-3 rounded-2xl border-2 border-red-500 bg-red-50 text-red-600 font-bold text-sm transition-all";
+                btnIn.className = "p-3 rounded-2xl border-2 border-transparent bg-gray-100 dark:bg-slate-800 text-gray-400 font-bold text-sm transition-all";
             }
         }
 
@@ -1014,27 +972,27 @@
 
         function createItemRow(name = '', description = '', qty = '', price = '') {
             const div = document.createElement('div');
-            div.className = "item-row animate-slide-up bg-ink/5 dark:bg-night-card2 p-3 rounded-xl border border-ink/10 dark:border-white/10 space-y-2";
+            div.className = "item-row animate-slide-up bg-gray-50 dark:bg-slate-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 space-y-2";
             div.innerHTML = `
                 <div class="flex gap-2 items-start">
                     <div class="flex-1 space-y-2">
-                        <input type="text" value="${name}" placeholder="Nama Item" class="w-full p-2 bg-white dark:bg-night-card rounded-lg text-xs outline-none border border-transparent focus:border-emerald-500 i-name text-ink dark:text-white">
-                        <input type="text" value="${description}" placeholder="Deskripsi Item" class="w-full p-2 bg-white dark:bg-night-card rounded-lg text-xs outline-none border border-transparent focus:border-emerald-500 i-description text-slateink-500 dark:text-gray-400 italic">
+                        <input type="text" value="${name}" placeholder="Nama Item" class="w-full p-2 bg-white dark:bg-slate-900 rounded-lg text-xs outline-none border border-transparent focus:border-blue-500 i-name text-gray-800 dark:text-white">
+                        <input type="text" value="${description}" placeholder="Deskripsi Item" class="w-full p-2 bg-white dark:bg-slate-900 rounded-lg text-xs outline-none border border-transparent focus:border-blue-500 i-description text-gray-500 dark:text-gray-400 italic">
                     </div>
-                    <button onclick="this.parentElement.parentElement.remove(); calcNota();" class="p-2 text-brick-500 hover:bg-brick-500/10 dark:hover:bg-red-900/30 rounded-lg transition-colors shrink-0 mt-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    <button onclick="this.parentElement.parentElement.remove(); calcNota();" class="p-2 text-red-500 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-lg transition-colors shrink-0 mt-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                 </div>
-                <div class="flex gap-2 bg-white dark:bg-night-card p-2 rounded-lg">
+                <div class="flex gap-2 bg-white dark:bg-slate-900 p-2 rounded-lg">
                     <div class="flex-1">
-                        <label class="text-[9px] text-slateink-400 uppercase font-bold mb-1 block">Qty</label>
-                        <input type="text" inputmode="numeric" value="${qty}" placeholder="0" class="w-full p-2 bg-ink/5 dark:bg-night-card2 rounded text-xs outline-none border border-transparent focus:border-emerald-500 i-qty text-ink dark:text-white font-semibold font-tabular" oninput="formatRupiahRealtime(this); calcNota()">
+                        <label class="text-[9px] text-gray-400 uppercase font-bold mb-1 block">Qty</label>
+                        <input type="text" inputmode="numeric" value="${qty}" placeholder="0" class="w-full p-2 bg-gray-50 dark:bg-slate-800 rounded text-xs outline-none border border-transparent focus:border-blue-500 i-qty text-gray-800 dark:text-white font-semibold" oninput="formatRupiahRealtime(this); calcNota()">
                     </div>
                     <div class="flex-1">
-                        <label class="text-[9px] text-slateink-400 uppercase font-bold mb-1 block">Harga</label>
-                        <input type="text" inputmode="numeric" value="${price}" placeholder="0" class="w-full p-2 bg-ink/5 dark:bg-night-card2 rounded text-xs outline-none border border-transparent focus:border-emerald-500 i-price text-ink dark:text-white font-semibold font-tabular" oninput="formatRupiahRealtime(this); calcNota()">
+                        <label class="text-[9px] text-gray-400 uppercase font-bold mb-1 block">Harga</label>
+                        <input type="text" inputmode="numeric" value="${price}" placeholder="0" class="w-full p-2 bg-gray-50 dark:bg-slate-800 rounded text-xs outline-none border border-transparent focus:border-blue-500 i-price text-gray-800 dark:text-white font-semibold" oninput="formatRupiahRealtime(this); calcNota()">
                     </div>
                     <div class="flex-1 pt-5">
-                        <p class="text-xs font-bold text-slateink-600 dark:text-gray-300">Total</p>
-                        <p class="text-sm font-black font-tabular text-emerald-500 i-total">Rp 0</p>
+                        <p class="text-xs font-bold text-gray-600 dark:text-gray-300">Total</p>
+                        <p class="text-sm font-black text-blue-600 i-total">Rp 0</p>
                     </div>
                 </div>
             `;
@@ -1336,21 +1294,21 @@
 
             const recent = state.notas.slice(0, 5);
             if(recent.length === 0) {
-                document.getElementById('recent-list').innerHTML = `<div class="text-center p-6 glass-card rounded-2xl border border-dashed border-ink/15 dark:border-white/15 text-slateink-400 text-sm">Belum ada pesanan.</div>`;
+                document.getElementById('recent-list').innerHTML = `<div class="text-center p-6 glass-card rounded-2xl border-dashed text-gray-400 text-sm">Belum ada pesanan.</div>`;
             } else {
                 document.getElementById('recent-list').innerHTML = recent.map(n => {
                     const isLunas = n.dp >= n.total;
                     return `
                     <div class="flex items-center justify-between glass-card p-4 rounded-2xl animate-slide-up cursor-pointer hover:bg-white/50" onclick="previewInvoiceById('${n.id}')">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 ${isLunas ? 'bg-emerald-500/10 text-emerald-500' : 'bg-marigold-500/10 text-marigold-500'} rounded-full flex items-center justify-center">
+                            <div class="w-10 h-10 ${isLunas ? 'bg-green-100 text-green-600' : 'bg-blue-100 text-blue-600'} rounded-full flex items-center justify-center">
                                 <i data-lucide="receipt" class="w-5 h-5"></i>
                             </div>
-                            <div><p class="font-bold text-sm text-ink dark:text-white truncate w-32">${n.customer}</p><p class="text-[10px] text-slateink-500">${n.date.split('-').reverse().join('/')}</p></div>
+                            <div><p class="font-bold text-sm text-gray-800 dark:text-white truncate w-32">${n.customer}</p><p class="text-[10px] text-gray-500">${n.date.split('-').reverse().join('/')}</p></div>
                         </div>
                         <div class="text-right">
-                            <p class="font-bold font-tabular text-sm text-ink dark:text-white">Rp ${formatNumber(n.total)}</p>
-                            <span class="stamp text-[9px] px-2 py-0.5 font-semibold ${isLunas ? 'text-emerald-500' : 'text-marigold-500'}">
+                            <p class="font-bold text-sm text-gray-800 dark:text-white">Rp ${formatNumber(n.total)}</p>
+                            <span class="text-[9px] px-2 py-0.5 rounded-full font-semibold ${isLunas ? 'bg-green-100 text-green-600' : 'bg-orange-100 text-orange-600'}">
                                 ${isLunas ? 'LUNAS' : 'SISA Rp ' + formatNumber(n.total - n.dp)}
                             </span>
                         </div>
@@ -1392,22 +1350,22 @@
             document.getElementById('stat-saldo').innerText = `Rp ${formatNumber(saldo)}`;
 
             if(filtered.length === 0) {
-                tbody.innerHTML = `<tr><td class="text-center py-6 text-slateink-400 text-xs italic">Data tidak ditemukan.</td></tr>`; return;
+                tbody.innerHTML = `<tr><td class="text-center py-6 text-gray-400 text-xs italic">Data tidak ditemukan.</td></tr>`; return;
             }
 
             tbody.innerHTML = filtered.map(r => `
-                <tr class="cursor-pointer hover:bg-ink/5 dark:hover:bg-night-card2 transition-colors" onclick="openCatatModal('${r.id}')">
+                <tr class="cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors" onclick="openCatatModal('${r.id}')">
                     <td class="py-3 px-2 align-top w-12">
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center ${r.type==='masuk'?'bg-emerald-500/10 text-emerald-500 dark:bg-emerald-900/30':'bg-brick-500/10 text-brick-500 dark:bg-red-900/30'}">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center ${r.type==='masuk'?'bg-green-100 text-green-600 dark:bg-green-900/30':'bg-red-100 text-red-600 dark:bg-red-900/30'}">
                             <i data-lucide="${r.type==='masuk'?'arrow-up-right':'arrow-down-left'}" class="w-4 h-4"></i>
                         </div>
                     </td>
                     <td class="py-3 px-2">
-                        <p class="font-bold text-xs text-ink dark:text-white truncate w-40 sm:w-56">${r.note}</p>
-                        <p class="text-[10px] text-slateink-400 mt-0.5">${r.date.split('-').reverse().join('/')}</p>
+                        <p class="font-bold text-xs text-gray-800 dark:text-white truncate w-40 sm:w-56">${r.note}</p>
+                        <p class="text-[10px] text-gray-400 mt-0.5">${r.date.split('-').reverse().join('/')}</p>
                     </td>
                     <td class="py-3 px-2 text-right">
-                        <p class="font-bold font-tabular text-xs ${r.type==='masuk'?'text-emerald-500':'text-ink dark:text-gray-300'}">${r.type==='masuk'?'+':'-'}Rp ${formatNumber(r.amount)}</p>
+                        <p class="font-bold text-xs ${r.type==='masuk'?'text-green-600':'text-gray-800 dark:text-gray-300'}">${r.type==='masuk'?'+':'-'}Rp ${formatNumber(r.amount)}</p>
                     </td>
                 </tr>
             `).join('');
@@ -1421,19 +1379,19 @@
             const filtered = state.notas.filter(n => n.customer.toLowerCase().includes(search) || n.id.toLowerCase().includes(search));
 
             if(filtered.length === 0) {
-                container.innerHTML = `<div class="text-center py-10 text-slateink-400 text-sm italic">Belum ada nota.</div>`; return;
+                container.innerHTML = `<div class="text-center py-10 text-gray-400 text-sm italic">Belum ada nota.</div>`; return;
             }
 
             container.innerHTML = filtered.map(n => {
                 const isLunas = n.dp >= n.total;
                 return `
-                <div class="glass-card p-4 rounded-3xl shadow-sm border-l-4 ${isLunas ? 'border-l-emerald-500' : 'border-l-marigold-500'} animate-slide-up flex items-center gap-3">
+                <div class="glass-card p-4 rounded-3xl shadow-sm border-l-4 ${isLunas ? 'border-l-green-500' : 'border-l-orange-500'} animate-slide-up flex items-center gap-3">
                     <div class="flex-1 cursor-pointer" onclick="openNotaModal('${n.id}')">
-                        <h4 class="font-black text-sm text-ink dark:text-white">${n.customer}</h4>
-                        <p class="text-[10px] text-slateink-500 mt-0.5">${n.date.split('-').reverse().join('/')}</p>
-                        <p class="font-bold font-tabular text-sm text-emerald-500 mt-1">Rp ${formatNumber(n.total)}</p>
+                        <h4 class="font-black text-sm text-gray-800 dark:text-white">${n.customer}</h4>
+                        <p class="text-[10px] text-gray-500 mt-0.5">${n.date.split('-').reverse().join('/')}</p>
+                        <p class="font-bold text-sm text-blue-600 mt-1">Rp ${formatNumber(n.total)}</p>
                     </div>
-                    <button onclick="previewInvoiceById('${n.id}')" class="p-3 bg-ink/5 hover:bg-ink/10 dark:bg-night-card2 dark:hover:bg-night-border rounded-xl text-slateink-600 dark:text-white shrink-0 transition-colors"><i data-lucide="printer" class="w-5 h-5"></i></button>
+                    <button onclick="previewInvoiceById('${n.id}')" class="p-3 bg-gray-100 hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-xl text-gray-600 dark:text-white shrink-0 transition-colors"><i data-lucide="printer" class="w-5 h-5"></i></button>
                 </div>
             `}).join('');
             lucide.createIcons();
